@@ -1,7 +1,9 @@
 {
     "name": "NET.efilnukefesin.Lib.Common",
     "rootNamespace": "NET.efilnukefesin.Lib.Common",
-    "references": [],
+    "references": [
+        "GUID:928589a22d6fcca4f95493e725dbe893"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

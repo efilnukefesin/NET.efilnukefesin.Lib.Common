@@ -1,7 +1,9 @@
 {
     "name": "NET.efilnukefesin.Lib.Common.Interfaces",
     "rootNamespace": "NET.efilnukefesin.Lib.Common.Interfaces",
-    "references": [],
+    "references": [
+        "GUID:861bad1018aa09f408efb299c45df5a9"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

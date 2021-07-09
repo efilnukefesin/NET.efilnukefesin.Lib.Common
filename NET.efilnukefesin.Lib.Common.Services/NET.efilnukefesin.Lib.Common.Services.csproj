@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,5 +7,10 @@
     <Authors>efilnukefesin.NET</Authors>
     <Description>Common interfaces for different purposes based on NET Standard 2.0</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Interfaces\NET.efilnukefesin.Lib.Common.Interfaces.csproj" />
+    <ProjectReference Include="..\NET.efilnukefesin.Lib.Common\NET.efilnukefesin.Lib.Common.csproj" />
+  </ItemGroup>
 
 </Project>

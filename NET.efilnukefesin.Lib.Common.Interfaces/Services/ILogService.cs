@@ -12,6 +12,12 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 
         #region Methods
 
+        void Fatal();
+        void Error();
+        void Warning();
+        void Info();
+        void Debug();
+
         #endregion Methods
     }
 }

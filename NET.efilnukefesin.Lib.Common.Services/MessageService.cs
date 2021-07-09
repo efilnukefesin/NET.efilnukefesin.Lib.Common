@@ -9,9 +9,16 @@ namespace NET.efilnukefesin.Lib.Common.Services
     {
         #region Properties
 
+        private ILogService logService;
+
         #endregion Properties
 
         #region Construction
+
+        public MessageService(ILogService logService)
+        {
+            this.logService = logService;
+        }
 
         #endregion Construction
 
@@ -22,5 +29,6 @@ namespace NET.efilnukefesin.Lib.Common.Services
         #region Events
 
         #endregion Events
+
     }
 }

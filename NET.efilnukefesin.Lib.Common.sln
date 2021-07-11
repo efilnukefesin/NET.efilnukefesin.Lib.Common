@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Lib.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Lib.Common.Interfaces", "NET.efilnukefesin.Lib.Common.Interfaces\NET.efilnukefesin.Lib.Common.Interfaces.csproj", "{38F98453-C9F4-48E9-BBC5-8ED9F8A7D7F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.efilnukefesin.Lib.Common.Services", "NET.efilnukefesin.Lib.Common.Services\NET.efilnukefesin.Lib.Common.Services.csproj", "{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Lib.Common.Services", "NET.efilnukefesin.Lib.Common.Services\NET.efilnukefesin.Lib.Common.Services.csproj", "{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.efilnukefesin.Tests.Lib.Common.Services", "NET.efilnukefesin.Tests.Lib.Common.Services\NET.efilnukefesin.Tests.Lib.Common.Services.csproj", "{AA66616A-4145-402F-8A02-ACEF94CE02B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F33B7ADD-6A71-4C0F-BE3F-22629A9CC6C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA66616A-4145-402F-8A02-ACEF94CE02B5} = {F33B7ADD-6A71-4C0F-BE3F-22629A9CC6C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2B4A445-EFC0-4F8B-8B21-CBCCA90D3315}

@@ -12,11 +12,11 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 
         #region Methods
 
-        void Fatal();
-        void Error();
-        void Warning();
-        void Info();
-        void Debug();
+        void Fatal(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null);
+        void Error(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null);
+        void Warning(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null);
+        void Info(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null);
+        void Debug(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null);
 
         #endregion Methods
     }

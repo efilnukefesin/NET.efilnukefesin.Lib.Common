@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NET.efilnukefesin.Lib.Common.Interfaces.Objects
+namespace NET.efilnukefesin.Lib.Common.Interfaces
 {
-    public interface IMessageSender
+    public interface IId
     {
         #region Properties
+
+        Guid Id { get; }
 
         #endregion Properties
 
         #region Methods
-
-        bool Send(string TopicName, IMessage Message);
 
         #endregion Methods
     }

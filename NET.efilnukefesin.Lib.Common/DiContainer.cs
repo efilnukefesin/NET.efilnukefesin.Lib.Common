@@ -23,7 +23,16 @@ namespace NET.efilnukefesin.Lib.Common
 
             if (DiContainer.serviceProvider != null)
             {
-                result = (T)DiContainer.serviceProvider.GetRequiredService<T>();
+                bool isServiceRgistered = DiContainer.serviceProvider.GetService<T>() != null;
+
+                if (isServiceRgistered)
+                {
+                    result = (T)DiContainer.serviceProvider.GetRequiredService<T>();
+                }
+                else  //TODO: make better if, currently we are assuming that the user wants to resolve a not-known class
+                {
+                    result = ActivatorUtilities.CreateInstance<T>(DiContainer.serviceProvider);
+                }
             }
 
             return result;
@@ -34,6 +43,7 @@ namespace NET.efilnukefesin.Lib.Common
         public static void SetServiceProvider(IServiceProvider ServiceProvider)
         {
             DiContainer.serviceProvider = ServiceProvider;
+
         }
         #endregion SetServiceProvider
 

@@ -26,44 +26,45 @@ namespace NET.efilnukefesin.Lib.Common.Services
         #region Methods
 
         #region Debug
-        public void Debug()
+        public void Debug(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
-            this.WriteEntry();
+            this.WriteEntry("Debug", SenderClassName, SenderMethodName, Entry, exception);
         }
         #endregion Debug
 
         #region Error
-        public void Error()
+        public void Error(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
-            this.WriteEntry();
+            this.WriteEntry("Error", SenderClassName, SenderMethodName, Entry, exception);
         }
         #endregion Error
 
         #region Fatal
-        public void Fatal()
+        public void Fatal(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
-            this.WriteEntry();
+            this.WriteEntry("Fatal", SenderClassName, SenderMethodName, Entry, exception);
         }
         #endregion Fatal
 
         #region Info
-        public void Info()
+        public void Info(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
-            this.WriteEntry();
+            this.WriteEntry("Info", SenderClassName, SenderMethodName, Entry, exception);
         }
         #endregion Info
 
         #region Warning
-        public void Warning()
+        public void Warning(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
-            this.WriteEntry();
+            this.WriteEntry("Warning", SenderClassName, SenderMethodName, Entry, exception);
         }
         #endregion Warning
 
         #region WriteEntry
-        private void WriteEntry()
+        private void WriteEntry(string Severity, string SenderClassName, string SenderMethodName, string Entry, Exception exception)
         {
-            throw new NotImplementedException();
+            //TODO: format Exception and add if not empty
+            System.Diagnostics.Debug.WriteLine($"[{Severity}] {SenderClassName}.{SenderMethodName}: {Entry}");
         }
         #endregion WriteEntry
 

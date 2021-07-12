@@ -11,11 +11,13 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Objects
         string Subject { get; }
         object Payload { get; }
         IMessageSender Sender { get; }
-        IEnumerable<IMessageReceiver> Recipients { get; }
+        IList<IMessageReceiver> Recipients { get; }
 
         #endregion Properties
 
         #region Methods
+
+        void AddReceiver(IMessageReceiver CurrentReceiver);
 
         #endregion Methods
     }

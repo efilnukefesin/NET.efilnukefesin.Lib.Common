@@ -1,9 +1,11 @@
-﻿using System;
+﻿using NET.efilnukefesin.Lib.Common.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 {
+    [ArchitectureLayer("Logging")]
     public interface ILogService : IService
     {
         #region Properties

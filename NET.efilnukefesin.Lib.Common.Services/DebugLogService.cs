@@ -36,6 +36,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public void Error(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
             this.WriteEntry("Error", SenderClassName, SenderMethodName, Entry, exception);
+            this.errorService.ReportError(SenderClassName, SenderMethodName, Entry, exception, false);
         }
         #endregion Error
 
@@ -43,6 +44,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public void Fatal(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
             this.WriteEntry("Fatal", SenderClassName, SenderMethodName, Entry, exception);
+            this.errorService.ReportFatal(SenderClassName, SenderMethodName, Entry, exception, true);
         }
         #endregion Fatal
 

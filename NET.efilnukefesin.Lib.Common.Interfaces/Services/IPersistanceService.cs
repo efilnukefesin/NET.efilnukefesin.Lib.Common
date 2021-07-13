@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 {
-    [ArchitectureLayer("Persistence")]
+    [ArchitectureLayer("Data Access")]
     public interface IPersistanceService : IService 
     {
         #region Properties

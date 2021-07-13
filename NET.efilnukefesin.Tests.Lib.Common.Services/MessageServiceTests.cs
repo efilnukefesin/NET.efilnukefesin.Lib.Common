@@ -44,9 +44,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         }
         #endregion Register
 
-        #region Send
+        #region SendToOneRecipient
         [TestMethod]
-        public void Send()
+        public void SendToOneRecipient()
         {
             string topicName = "NewTopic";
             MessageTransceiver messageTransceiver = DiContainer.Resolve<MessageTransceiver>();
@@ -56,8 +56,29 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             Assert.AreEqual(true, isRegistered);
             Assert.AreEqual(1, this.messageService.Topics.Where(x => x.Name.Equals(topicName)).FirstOrDefault().MessageCount);
             Assert.AreEqual(1, this.messageService.Topics.Where(x => x.Name.Equals(topicName)).FirstOrDefault().Receivers.Count);
+            Assert.AreEqual(true, messageTransceiver.HasReceivedMessage);
         }
-        #endregion Send
+        #endregion SendToOneRecipient
+
+        #region SendToTwoRecipients
+        [TestMethod]
+        public void SendToTwoRecipients()
+        {
+            string topicName = "NewTopic";
+            MessageTransceiver messageTransceiver1 = DiContainer.Resolve<MessageTransceiver>();
+            MessageTransceiver messageTransceiver2 = DiContainer.Resolve<MessageTransceiver>();
+            bool isRegistered1 = this.messageService.Register(messageTransceiver1, topicName);
+            bool isRegistered2 = this.messageService.Register(messageTransceiver2, topicName);
+            messageTransceiver1.Send(topicName, new Message("TestSubject", 666, messageTransceiver1));
+
+            Assert.AreEqual(true, isRegistered1);
+            Assert.AreEqual(true, isRegistered2);
+            Assert.AreEqual(1, this.messageService.Topics.Where(x => x.Name.Equals(topicName)).FirstOrDefault().MessageCount);
+            Assert.AreEqual(2, this.messageService.Topics.Where(x => x.Name.Equals(topicName)).FirstOrDefault().Receivers.Count);
+            Assert.AreEqual(true, messageTransceiver1.HasReceivedMessage);
+            Assert.AreEqual(true, messageTransceiver2.HasReceivedMessage);
+        }
+        #endregion SendToTwoRecipients
 
         #region Deregister
         [TestMethod]

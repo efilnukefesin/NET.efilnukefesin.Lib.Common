@@ -12,6 +12,8 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.Classes
 
         private IMessageService messageService;
 
+        public bool HasReceivedMessage { get; private set; } = false;
+
         public Guid Id { get; private set; } = Guid.NewGuid();
 
         #endregion Properties
@@ -24,6 +26,11 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.Classes
             bool result = false;
             Message.AddReceiver(this);
             // do stuff based on Message Subject and Content
+            if (Message.Subject.Equals("TestSubject"))
+            {
+                this.HasReceivedMessage = true;
+                result = true;
+            }
             return result;
         }
         #endregion Receive

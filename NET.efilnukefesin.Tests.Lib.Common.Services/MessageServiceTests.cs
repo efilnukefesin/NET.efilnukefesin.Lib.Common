@@ -15,7 +15,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
     {
         #region Properties
 
-        IMessageService messageService;
+        private IMessageService messageService;
 
         #endregion Properties
 

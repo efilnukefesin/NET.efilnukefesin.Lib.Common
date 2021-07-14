@@ -6,13 +6,16 @@ using System.Text;
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 {
     [ArchitectureLayer("Application Control")]
-    public interface ITimeService : IService 
+    public interface ITimeService : IService
     {
         #region Properties
 
         #endregion Properties
 
         #region Methods
+
+        DateTime GetCurrentTime(string PlaceName);
+        void SetCurrentTime(string PlaceName, DateTime NewTime);
 
         #endregion Methods
     }

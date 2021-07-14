@@ -23,6 +23,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddTransient<ILogService, DebugLogService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IErrorService, DebugErrorService>();
+            services.AddTransient<ITimeService, TimeService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }

@@ -6,7 +6,7 @@ using System.Text;
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 {
     [ArchitectureLayer("Application Control")]
-    interface ITechnicalService
+    public interface ITechnicalService
     {
         #region Properties
 

@@ -10,6 +10,12 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
     {
         #region Properties
 
+        int FatalCount { get; }
+        int ErrorCount { get; }
+        int WarningCount { get; }
+        int InfoCount { get; }
+        int DebugCount { get; }
+
         #endregion Properties
 
         #region Methods

@@ -20,10 +20,14 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
 
         public static void Register(IServiceCollection services)
         {
-            services.AddTransient<ILogService, DebugLogService>();
+            services.AddSingleton<ILogService, DebugLogService>();
             services.AddTransient<IMessageService, MessageService>();
-            services.AddTransient<IErrorService, DebugErrorService>();
+            services.AddSingleton<IErrorService, DebugErrorService>();
             services.AddTransient<ITimeService, TimeService>();
+            services.AddSingleton<IConfigurationService, ConfigurationService>();
+            services.AddSingleton<ITechnicalService, TechnicalService>();
+            services.AddSingleton<IFeatureService, FeatureService>();
+            services.AddTransient<IUserNotificationService, UserNotificationService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Lib.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Lib.Common.Services", "NET.efilnukefesin.Lib.Common.Services\NET.efilnukefesin.Lib.Common.Services.csproj", "{114FCF04-614B-4E95-BF63-3F3ADD1AC66D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.efilnukefesin.Tests.Lib.Common.Services", "NET.efilnukefesin.Tests.Lib.Common.Services\NET.efilnukefesin.Tests.Lib.Common.Services.csproj", "{AA66616A-4145-402F-8A02-ACEF94CE02B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Tests.Lib.Common.Services", "NET.efilnukefesin.Tests.Lib.Common.Services\NET.efilnukefesin.Tests.Lib.Common.Services.csproj", "{AA66616A-4145-402F-8A02-ACEF94CE02B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F33B7ADD-6A71-4C0F-BE3F-22629A9CC6C3}"
 EndProject

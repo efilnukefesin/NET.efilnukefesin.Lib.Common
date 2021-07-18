@@ -11,6 +11,16 @@ namespace NET.efilnukefesin.Lib.Common.Services
 
         private IErrorService errorService;
 
+        public int FatalCount { get; private set; } = 0;
+
+        public int ErrorCount { get; private set; } = 0;
+
+        public int WarningCount { get; private set; } = 0;
+
+        public int InfoCount { get; private set; } = 0;
+
+        public int DebugCount { get; private set; } = 0;
+
         #endregion Properties
 
         #region Construction
@@ -29,6 +39,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public void Debug(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
             this.WriteEntry("Debug", SenderClassName, SenderMethodName, Entry, exception);
+            this.DebugCount++;
         }
         #endregion Debug
 
@@ -37,6 +48,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         {
             this.WriteEntry("Error", SenderClassName, SenderMethodName, Entry, exception);
             this.errorService.ReportError(SenderClassName, SenderMethodName, Entry, exception, false);
+            this.ErrorCount++;
         }
         #endregion Error
 
@@ -45,6 +57,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         {
             this.WriteEntry("Fatal", SenderClassName, SenderMethodName, Entry, exception);
             this.errorService.ReportFatal(SenderClassName, SenderMethodName, Entry, exception, true);
+            this.FatalCount++;
         }
         #endregion Fatal
 
@@ -52,6 +65,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public void Info(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
             this.WriteEntry("Info", SenderClassName, SenderMethodName, Entry, exception);
+            this.InfoCount++;
         }
         #endregion Info
 
@@ -59,6 +73,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public void Warning(string SenderClassName, string SenderMethodName, string Entry, Exception exception = null)
         {
             this.WriteEntry("Warning", SenderClassName, SenderMethodName, Entry, exception);
+            this.WarningCount++;
         }
         #endregion Warning
 

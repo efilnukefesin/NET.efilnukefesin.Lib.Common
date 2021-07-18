@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Objects
 {
-    public interface IUserNotification
+    public interface IUserNotification : IId, ISubject, IText
     {
         #region Properties
 

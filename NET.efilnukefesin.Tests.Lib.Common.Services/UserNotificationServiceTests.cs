@@ -44,7 +44,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
                 notifications.Add(e.UserNotification);
             };
 
-            this.userNotificationService.Enqueue(new UserNotification());
+            this.userNotificationService.Enqueue(new UserNotification("TestNotification", "this is a helpful text to guide the user into solving the issue"));
 
             Assert.AreEqual(1, notifications.Count);
         }
@@ -56,7 +56,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         {
             ILogService logService = DiContainer.Resolve<ILogService>();
 
-            this.userNotificationService.Enqueue(new UserNotification());
+            this.userNotificationService.Enqueue(new UserNotification("TestNotification", "this is a helpful text to guide the user into solving the issue"));
 
             Assert.AreEqual(1, logService.WarningCount);
         }

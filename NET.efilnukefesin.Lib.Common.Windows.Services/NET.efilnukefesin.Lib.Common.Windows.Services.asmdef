@@ -1,0 +1,16 @@
+{
+    "name": "NET.efilnukefesin.Lib.Common.Windows.Services",
+    "rootNamespace": "",
+    "references": [
+        "GUID:928589a22d6fcca4f95493e725dbe893"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

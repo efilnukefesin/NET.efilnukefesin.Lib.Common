@@ -90,6 +90,8 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
                     Console.WriteLine("-----------------------------------");
                     Console.WriteLine("VerticalResolution: {0}", queryObj["VerticalResolution"]);
                 }
+
+                // https://stackoverflow.com/questions/1528266/list-of-valid-resolutions-for-a-given-screen
             }
             catch (ManagementException e)
             {

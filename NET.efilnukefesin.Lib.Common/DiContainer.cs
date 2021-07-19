@@ -17,7 +17,7 @@ namespace NET.efilnukefesin.Lib.Common
         #region Methods
 
         #region Resolve
-        public static T Resolve<T>()
+        public static T Resolve<T>(params object[] CtorParameters)
         {
             T result = default;
 
@@ -31,9 +31,11 @@ namespace NET.efilnukefesin.Lib.Common
                 }
                 else  //TODO: make better if, currently we are assuming that the user wants to resolve a not-known class
                 {
-                    result = ActivatorUtilities.CreateInstance<T>(DiContainer.serviceProvider);
+                    result = ActivatorUtilities.CreateInstance<T>(DiContainer.serviceProvider, CtorParameters);
                 }
             }
+
+            //TODO: if the result implements IInitialize then call it
 
             return result;
         }

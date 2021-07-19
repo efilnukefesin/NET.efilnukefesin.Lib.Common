@@ -11,6 +11,7 @@ using System.Linq;
 namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
+    [TestCategory("IConfigurationService")]
     public class ConfigurationServiceTests
     {
         #region Properties

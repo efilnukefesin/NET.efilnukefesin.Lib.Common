@@ -1,12 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.3-alpha01</Version>
+    <Version>0.0.3-alpha02</Version>
     <Authors>efilnukefesin.NET</Authors>
     <Description>Specific Windows Platform implementations</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="6.0.0-preview.6.21352.12" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Interfaces\NET.efilnukefesin.Lib.Common.Interfaces.csproj" />

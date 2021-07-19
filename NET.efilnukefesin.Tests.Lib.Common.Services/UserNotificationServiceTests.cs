@@ -13,6 +13,7 @@ using System.Text;
 namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
+    [TestCategory("IUserNotificationService")]
     public class UserNotificationServiceTests
     {
         #region Properties

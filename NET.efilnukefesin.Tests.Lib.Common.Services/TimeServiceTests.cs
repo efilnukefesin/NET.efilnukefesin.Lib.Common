@@ -11,6 +11,7 @@ using System.Text;
 namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
+    [TestCategory("ITimeService")]
     public class TimeServiceTests
     {
         #region Properties

@@ -26,13 +26,30 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IErrorService, DebugErrorService>();
             services.AddTransient<ITimeService, TimeService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
-            services.AddSingleton<ITechnicalService, WindowsTechnicalService>();
+            services.AddSingleton<ITechnicalService, TechnicalService>();
             services.AddSingleton<IFeatureService, FeatureService>();
             services.AddTransient<IUserNotificationService, UserNotificationService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }
         #endregion Register
+
+        #region RegisterForWindows
+
+        public static void RegisterForWindows(IServiceCollection services)
+        {
+            services.AddSingleton<ILogService, DebugLogService>();
+            services.AddTransient<IMessageService, MessageService>();
+            services.AddSingleton<IErrorService, DebugErrorService>();
+            services.AddTransient<ITimeService, TimeService>();
+            services.AddSingleton<IConfigurationService, ConfigurationService>();
+            services.AddSingleton<ITechnicalService, WindowsTechnicalService>();
+            services.AddSingleton<IFeatureService, FeatureService>();
+            services.AddTransient<IUserNotificationService, UserNotificationService>();
+
+            DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
+        }
+        #endregion RegisterForWindows
 
         #endregion Methods
     }

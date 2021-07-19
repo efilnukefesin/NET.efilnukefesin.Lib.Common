@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Interfaces\NET.efilnukefesin.Lib.Common.Interfaces.csproj" />
     <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Services\NET.efilnukefesin.Lib.Common.Services.csproj" />
+    <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Windows.Services\NET.efilnukefesin.Lib.Common.Windows.Services.csproj" />
     <ProjectReference Include="..\NET.efilnukefesin.Lib.Common\NET.efilnukefesin.Lib.Common.csproj" />
   </ItemGroup>
 

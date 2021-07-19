@@ -1,4 +1,5 @@
 ﻿using NET.efilnukefesin.Lib.Common.Attributes;
+using NET.efilnukefesin.Lib.Common.Interfaces.Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,10 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
     public interface ITechnicalService
     {
         #region Properties
+
+        string OperatingSystemName { get; }
+
+        IList<IMonitor> Monitors { get; }
 
         #endregion Properties
 

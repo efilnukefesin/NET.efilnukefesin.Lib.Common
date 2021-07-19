@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.efilnukefesin.Tests.Lib
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F33B7ADD-6A71-4C0F-BE3F-22629A9CC6C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.efilnukefesin.Lib.Common.Windows.Services", "NET.efilnukefesin.Lib.Common.Windows.Services\NET.efilnukefesin.Lib.Common.Windows.Services.csproj", "{CF5AB3FC-556D-46AA-8599-4EF8E1179F32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA66616A-4145-402F-8A02-ACEF94CE02B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5AB3FC-556D-46AA-8599-4EF8E1179F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5AB3FC-556D-46AA-8599-4EF8E1179F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5AB3FC-556D-46AA-8599-4EF8E1179F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5AB3FC-556D-46AA-8599-4EF8E1179F32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

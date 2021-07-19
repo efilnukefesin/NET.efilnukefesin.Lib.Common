@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.3-alpha01</Version>
+    <Authors>efilnukefesin.NET</Authors>
+    <Description>Specific Windows Platform implementations</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NET.efilnukefesin.Lib.Common.Interfaces\NET.efilnukefesin.Lib.Common.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

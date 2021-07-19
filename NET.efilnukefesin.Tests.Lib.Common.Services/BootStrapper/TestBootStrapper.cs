@@ -2,6 +2,7 @@
 using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
 using NET.efilnukefesin.Lib.Common.Services;
+using NET.efilnukefesin.Lib.Common.Windows.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +26,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IErrorService, DebugErrorService>();
             services.AddTransient<ITimeService, TimeService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
-            services.AddSingleton<ITechnicalService, TechnicalService>();
+            services.AddSingleton<ITechnicalService, WindowsTechnicalService>();
             services.AddSingleton<IFeatureService, FeatureService>();
             services.AddTransient<IUserNotificationService, UserNotificationService>();
 

@@ -15,6 +15,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
         public bool IsInitialized { get; private set; } = false;
 
         public string OperatingSystemName { get; private set; }
+        public string ComputerName { get; private set; }
 
         public IList<IMonitor> Monitors { get; private set; }
 
@@ -32,6 +33,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
             if (!this.IsInitialized)
             {
                 this.OperatingSystemName = this.GetOsName();
+                this.ComputerName = this.GetComputerName();
                 this.Monitors = this.GetMonitors();
 
                 this.IsInitialized = true;
@@ -43,13 +45,29 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
         private string GetOsName()
         {
             string result = "";
-            var name = (from x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem").Get().Cast<ManagementObject>()
-                        select x.GetPropertyValue("Caption")).FirstOrDefault();
+            result = this.GetWin32_OperatingSystemInfo("Caption");
+            return result;
+        }
+        #endregion GetOsName
+
+        #region GetComputerName
+        private string GetComputerName()
+        {
+            string result = "";
+            result = this.GetWin32_OperatingSystemInfo("csname");
+            return result;
+        }
+        #endregion GetComputerName
+
+        private string GetWin32_OperatingSystemInfo(string PropertyName)
+        {
+            string result = "";
+            var name = (from x in new ManagementObjectSearcher($"SELECT {PropertyName} FROM Win32_OperatingSystem").Get().Cast<ManagementObject>()
+                        select x.GetPropertyValue(PropertyName)).FirstOrDefault();
             result = name != null ? name.ToString() : "Unknown";
 
             return result;
         }
-        #endregion GetOsName
 
         //#region GetMonitors
         //private IList<IMonitor> GetMonitors()

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NET.efilnukefesin.Lib.Common.Extensions;
+using NET.efilnukefesin.Lib.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -8,6 +10,7 @@ namespace NET.efilnukefesin.Lib.Common
 {
     public static class DiContainer
     {
+        //TODO: hold a list of registered services
         #region Properties
 
         internal static IServiceProvider serviceProvider;
@@ -35,7 +38,11 @@ namespace NET.efilnukefesin.Lib.Common
                 }
             }
 
-            //TODO: if the result implements IInitialize then call it
+            //if the result implements IInitialize then call it
+            if (result.DoesImplementInterface<IInitialize>())
+            {
+                ((IInitialize)result).Initialize();
+            }
 
             return result;
         }

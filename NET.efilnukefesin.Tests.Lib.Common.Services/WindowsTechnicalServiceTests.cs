@@ -29,10 +29,30 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             TestBootStrapper.RegisterForWindows(new ServiceCollection());
 
             this.technicalService = DiContainer.Resolve<ITechnicalService>();
-
-            this.technicalService.Initialize();
         }
         #endregion Initialize
+
+        #region GetComputerName
+        [TestMethod]
+        public void GetComputerName()
+        {
+            string computername = this.technicalService.ComputerName;
+
+            Assert.IsNotNull(computername);
+            Assert.AreNotEqual(0, computername.Length);
+        }
+        #endregion GetComputerName
+
+        #region GetOsName
+        [TestMethod]
+        public void GetOsName()
+        {
+            string osName = this.technicalService.OperatingSystemName;
+
+            Assert.IsNotNull(osName);
+            Assert.AreNotEqual(0, osName.Length);
+        }
+        #endregion GetOsName
 
         #region ListMonitors
         [TestMethod]

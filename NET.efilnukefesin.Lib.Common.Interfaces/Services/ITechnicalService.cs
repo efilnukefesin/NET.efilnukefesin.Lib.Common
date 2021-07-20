@@ -12,6 +12,7 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
         #region Properties
 
         string OperatingSystemName { get; }
+        string ComputerName { get; }
 
         IList<IMonitor> Monitors { get; }
 

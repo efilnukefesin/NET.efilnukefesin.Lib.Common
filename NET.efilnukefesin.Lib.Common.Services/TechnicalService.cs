@@ -11,11 +11,13 @@ namespace NET.efilnukefesin.Lib.Common.Services
     {
         #region Properties
 
+        public bool IsInitialized { get; private set; } = false;
+
         public string OperatingSystemName { get; private set; }
 
-        public IList<IMonitor> Monitors { get; private set; }
+        public string ComputerName { get; private set; }
 
-        public bool IsInitialized { get; private set; } = false;
+        public IList<IMonitor> Monitors { get; private set; }
 
         #endregion Properties
 
@@ -31,6 +33,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
             if (!this.IsInitialized)
             {
                 this.OperatingSystemName = "Dummy OS";
+                this.ComputerName = "Some Computer";
                 this.Monitors = new List<IMonitor>();
                 IList<IResolution> resolutions = new List<IResolution>();
                 IResolution resolution01 = DiContainer.Resolve<Resolution>(1024, 768);

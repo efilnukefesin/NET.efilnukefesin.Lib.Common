@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Management;
 using System.Linq;
+using NET.efilnukefesin.Lib.Common.Services.Objects;
 
 namespace NET.efilnukefesin.Lib.Common.Windows.Services
 {
@@ -92,24 +93,96 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
         //}
         //#endregion GetMonitors
 
+        //#region GetMonitors
+        //private IList<IMonitor> GetMonitors()
+        //{
+        //    IList<IMonitor> result = new List<IMonitor>();
+
+        //    try
+        //    {
+        //        ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_DisplayControllerConfiguration");
+
+        //        foreach (ManagementObject queryObj in searcher.Get())
+        //        {
+        //            Console.WriteLine("-----------------------------------");
+        //            Console.WriteLine("Win32_DisplayControllerConfiguration instance");
+        //            Console.WriteLine("-----------------------------------");
+        //            Console.WriteLine("VerticalResolution: {0}", queryObj["VerticalResolution"]);
+        //        }
+
+        //        // https://stackoverflow.com/questions/1528266/list-of-valid-resolutions-for-a-given-screen
+        //    }
+        //    catch (ManagementException e)
+        //    {
+        //        //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
+        //    }
+
+        //    return result;
+        //}
+        //#endregion GetMonitors
+
         #region GetMonitors
         private IList<IMonitor> GetMonitors()
         {
             IList<IMonitor> result = new List<IMonitor>();
 
+            // get all monitors
             try
             {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_DisplayControllerConfiguration");
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\WMI", "SELECT * FROM WmiMonitorID");
 
                 foreach (ManagementObject queryObj in searcher.Get())
                 {
-                    Console.WriteLine("-----------------------------------");
-                    Console.WriteLine("Win32_DisplayControllerConfiguration instance");
-                    Console.WriteLine("-----------------------------------");
-                    Console.WriteLine("VerticalResolution: {0}", queryObj["VerticalResolution"]);
+                    IMonitor monitor = DiContainer.Resolve<Monitor>("Some Name", (string)queryObj["InstanceName"], false, new List<IResolution>());
+                    result.Add(monitor);
                 }
+            }
+            catch (ManagementException e)
+            {
+                //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
+            }
 
-                // https://stackoverflow.com/questions/1528266/list-of-valid-resolutions-for-a-given-screen
+            // get Primary one
+            try
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_DesktopMonitor");
+
+                foreach (ManagementObject queryObj in searcher.Get())
+                {
+                    string pnpDeviceId = (string)queryObj["PNPDeviceID"];
+                    pnpDeviceId.Replace("\\", "\\\\");
+                    IMonitor monitor = result.Where(x => x.PnPDeviceID.ToUpperInvariant().Contains(pnpDeviceId.ToUpperInvariant())).FirstOrDefault();
+                    if (monitor != null)
+                    {
+                        monitor.SetPrimary();
+                    }
+                }
+            }
+            catch (ManagementException e)
+            {
+                //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
+            }
+
+            try
+            {
+                SelectQuery query = new SelectQuery("Win32_VideoController");
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+
+                List<string> properties = new List<string>();
+                Dictionary<string, object> propertiesAndValues = new Dictionary<string, object>();
+
+                foreach (ManagementBaseObject envVar in searcher.Get())
+                {
+                    //Console.WriteLine(envVar["VideoModeDescription"]);
+                    //Console.WriteLine(envVar["AdapterRAM"]);
+                    foreach (PropertyData obj in envVar.Properties)
+                    {
+                        string name = obj.Name;
+                        object value = envVar[name];
+                        properties.Add(name);
+                        propertiesAndValues.Add(name, value);
+                    }
+                }
             }
             catch (ManagementException e)
             {

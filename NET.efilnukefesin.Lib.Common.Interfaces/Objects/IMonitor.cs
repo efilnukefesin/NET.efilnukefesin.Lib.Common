@@ -9,11 +9,14 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Objects
         #region Properties
 
         bool IsPrimary { get; }
+        string PnPDeviceID { get; }
         IList<IResolution> Resolutions { get; }
 
         #endregion Properties
 
         #region Methods
+
+        void SetPrimary(bool IsPrimary = true);
 
         #endregion Methods
     }

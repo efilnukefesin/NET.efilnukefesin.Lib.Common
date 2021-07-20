@@ -15,13 +15,16 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
 
         public string Name { get; private set; }
 
+        public string PnPDeviceID { get; private set; }
+
         #endregion Properties
 
         #region Construction
 
-        public Monitor(string Name, bool IsPrimary, IList<IResolution> Resolutions)
+        public Monitor(string Name, string PnPDeviceID, bool IsPrimary, IList<IResolution> Resolutions)
         {
             this.Name = Name;
+            this.PnPDeviceID = PnPDeviceID;
             this.IsPrimary = IsPrimary;
             this.Resolutions = Resolutions;
         }
@@ -29,6 +32,13 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
         #endregion Construction
 
         #region Methods
+
+        #region SetPrimary
+        public void SetPrimary(bool IsPrimary = true)
+        {
+            this.IsPrimary = IsPrimary;
+        }
+        #endregion SetPrimary
 
         #endregion Methods
     }

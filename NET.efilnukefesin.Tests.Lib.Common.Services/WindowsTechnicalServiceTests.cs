@@ -60,7 +60,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         {
             IList<IMonitor> monitors = this.technicalService.Monitors;
 
-            Assert.AreEqual(1, monitors.Count);
+            Assert.AreNotEqual(0, monitors.Count);
         }
         #endregion ListMonitors
 

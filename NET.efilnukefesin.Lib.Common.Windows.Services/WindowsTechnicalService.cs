@@ -6,6 +6,7 @@ using System.Text;
 using System.Management;
 using System.Linq;
 using NET.efilnukefesin.Lib.Common.Services.Objects;
+using NET.efilnukefesin.Lib.Common.Extensions;
 
 namespace NET.efilnukefesin.Lib.Common.Windows.Services
 {
@@ -133,13 +134,15 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
 
                 foreach (ManagementObject queryObj in searcher.Get())
                 {
-                    IMonitor monitor = DiContainer.Resolve<Monitor>("Some Name", (string)queryObj["InstanceName"], false, new List<IResolution>());
+                    string userFriendlyName = ((ushort[])queryObj["UserFriendlyName"]).ConvertToText();
+                    string manufacturerName = ((ushort[])queryObj["ManufacturerName"]).ConvertToText();
+                    IMonitor monitor = DiContainer.Resolve<Monitor>($"{manufacturerName} {userFriendlyName}", (string)queryObj["InstanceName"], false, new List<IResolution>());
                     result.Add(monitor);
                 }
             }
             catch (ManagementException e)
             {
-                //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
+                //TODO: add user signalling or logging
             }
 
             // get Primary one
@@ -160,33 +163,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
             }
             catch (ManagementException e)
             {
-                //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
-            }
-
-            try
-            {
-                SelectQuery query = new SelectQuery("Win32_VideoController");
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-
-                List<string> properties = new List<string>();
-                Dictionary<string, object> propertiesAndValues = new Dictionary<string, object>();
-
-                foreach (ManagementBaseObject envVar in searcher.Get())
-                {
-                    //Console.WriteLine(envVar["VideoModeDescription"]);
-                    //Console.WriteLine(envVar["AdapterRAM"]);
-                    foreach (PropertyData obj in envVar.Properties)
-                    {
-                        string name = obj.Name;
-                        object value = envVar[name];
-                        properties.Add(name);
-                        propertiesAndValues.Add(name, value);
-                    }
-                }
-            }
-            catch (ManagementException e)
-            {
-                //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
+                //TODO: add user signalling or logging
             }
 
             return result;

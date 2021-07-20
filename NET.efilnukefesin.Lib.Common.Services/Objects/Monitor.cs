@@ -11,7 +11,7 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
 
         public bool IsPrimary { get; private set; }
 
-        public IList<IResolution> Resolutions { get; private set; }
+        public IList<IResolution> Resolutions { get; private set; }  //TODO: think about only storing the current (and therefore preferred) resolution
 
         public string Name { get; private set; }
 

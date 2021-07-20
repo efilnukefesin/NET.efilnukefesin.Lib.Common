@@ -38,7 +38,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
                 IList<IResolution> resolutions = new List<IResolution>();
                 IResolution resolution01 = DiContainer.Resolve<Resolution>(1024, 768);
                 resolutions.Add(resolution01);
-                IMonitor monitor01 = DiContainer.Resolve<Monitor>("Dummy Monitor", true, resolutions);
+                IMonitor monitor01 = DiContainer.Resolve<Monitor>("PnP Device Name", "Dummy Monitor", true, resolutions);
                 this.Monitors.Add(monitor01);
                 
                 this.IsInitialized = true;

@@ -11,7 +11,7 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
 
         public bool IsPrimary { get; private set; }
 
-        public IList<IResolution> Resolutions { get; private set; }  //TODO: think about only storing the current (and therefore preferred) resolution
+        public IResolution CurrentResolution { get; private set; }  //TODO: think about only storing the current (and therefore preferred) resolution
 
         public string Name { get; private set; }
 
@@ -21,12 +21,12 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
 
         #region Construction
 
-        public Monitor(string Name, string PnPDeviceID, bool IsPrimary, IList<IResolution> Resolutions)
+        public Monitor(string Name, string PnPDeviceID, bool IsPrimary, IResolution CurrentResolution = null)
         {
             this.Name = Name;
             this.PnPDeviceID = PnPDeviceID;
             this.IsPrimary = IsPrimary;
-            this.Resolutions = Resolutions;
+            this.CurrentResolution = CurrentResolution;
         }
 
         #endregion Construction
@@ -39,6 +39,13 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
             this.IsPrimary = IsPrimary;
         }
         #endregion SetPrimary
+
+        #region SetCurrentResolution
+        public void SetCurrentResolution(IResolution Resolution)
+        {
+            this.CurrentResolution = Resolution;
+        }
+        #endregion SetCurrentResolution
 
         #endregion Methods
     }

@@ -7,6 +7,8 @@ using System.Management;
 using System.Linq;
 using NET.efilnukefesin.Lib.Common.Services.Objects;
 using NET.efilnukefesin.Lib.Common.Extensions;
+using NET.efilnukefesin.Lib.Common.Windows.Services.Classes;
+using NET.efilnukefesin.Lib.Common.Windows.Services.Helpers;
 
 namespace NET.efilnukefesin.Lib.Common.Windows.Services
 {
@@ -61,6 +63,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
         }
         #endregion GetComputerName
 
+        #region GetWin32_OperatingSystemInfo
         private string GetWin32_OperatingSystemInfo(string PropertyName)
         {
             string result = "";
@@ -70,57 +73,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
 
             return result;
         }
-
-        //#region GetMonitors
-        //private IList<IMonitor> GetMonitors()
-        //{
-        //    IList<IMonitor> result = new List<IMonitor>();
-
-        //    ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"\root\wmi", @"SELECT * FROM WmiMonitorBasicDisplayParams");
-
-        //    //Calculate and output size for each monitor
-        //    foreach (ManagementObject managementObject in searcher.Get())
-        //    {
-        //        //Calculate monitor size in inches
-        //        double width = (byte)managementObject["MaxHorizontalImageSize"] / 2.54;
-        //        double height = (byte)managementObject["MaxVerticalImageSize"] / 2.54;
-        //        double diagonal = Math.Sqrt(width * width + height * height);
-
-        //        //Output monitor size
-        //        Console.WriteLine("Monitor Size: {0:F1}\"", diagonal);
-        //    }
-
-        //    return result;
-        //}
-        //#endregion GetMonitors
-
-        //#region GetMonitors
-        //private IList<IMonitor> GetMonitors()
-        //{
-        //    IList<IMonitor> result = new List<IMonitor>();
-
-        //    try
-        //    {
-        //        ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_DisplayControllerConfiguration");
-
-        //        foreach (ManagementObject queryObj in searcher.Get())
-        //        {
-        //            Console.WriteLine("-----------------------------------");
-        //            Console.WriteLine("Win32_DisplayControllerConfiguration instance");
-        //            Console.WriteLine("-----------------------------------");
-        //            Console.WriteLine("VerticalResolution: {0}", queryObj["VerticalResolution"]);
-        //        }
-
-        //        // https://stackoverflow.com/questions/1528266/list-of-valid-resolutions-for-a-given-screen
-        //    }
-        //    catch (ManagementException e)
-        //    {
-        //        //MessageBox.Show("An error occurred while querying for WMI data: " + e.Message);
-        //    }
-
-        //    return result;
-        //}
-        //#endregion GetMonitors
+        #endregion GetWin32_OperatingSystemInfo
 
         #region GetMonitors
         private IList<IMonitor> GetMonitors()
@@ -136,7 +89,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
                 {
                     string userFriendlyName = ((ushort[])queryObj["UserFriendlyName"]).ConvertToText();
                     string manufacturerName = ((ushort[])queryObj["ManufacturerName"]).ConvertToText();
-                    IMonitor monitor = DiContainer.Resolve<Monitor>($"{manufacturerName} {userFriendlyName}", (string)queryObj["InstanceName"], false, new List<IResolution>());
+                    IMonitor monitor = DiContainer.Resolve<Monitor>($"{manufacturerName} {userFriendlyName}", (string)queryObj["InstanceName"], false);
                     result.Add(monitor);
                 }
             }
@@ -165,6 +118,13 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
             {
                 //TODO: add user signalling or logging
             }
+
+            var _monitorInfos = new List<MonitorInfoWithHandle>();
+
+            // Enumerate monitors
+            MonitorHelper.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, MonitorHelper.MonitorEnum, IntPtr.Zero);
+
+            var x = MonitorHelper.GetHandles();
 
             return result;
         }

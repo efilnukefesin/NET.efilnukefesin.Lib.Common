@@ -35,10 +35,8 @@ namespace NET.efilnukefesin.Lib.Common.Services
                 this.OperatingSystemName = "Dummy OS";
                 this.ComputerName = "Some Computer";
                 this.Monitors = new List<IMonitor>();
-                IList<IResolution> resolutions = new List<IResolution>();
                 IResolution resolution01 = DiContainer.Resolve<Resolution>(1024, 768);
-                resolutions.Add(resolution01);
-                IMonitor monitor01 = DiContainer.Resolve<Monitor>("PnP Device Name", "Dummy Monitor", true, resolutions);
+                IMonitor monitor01 = DiContainer.Resolve<Monitor>("PnP Device Name", "Dummy Monitor", true, resolution01);
                 this.Monitors.Add(monitor01);
                 
                 this.IsInitialized = true;

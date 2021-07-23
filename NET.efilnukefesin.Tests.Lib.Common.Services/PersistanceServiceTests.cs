@@ -2,22 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
-using NET.efilnukefesin.Lib.Common.Messaging;
-using NET.efilnukefesin.Lib.Common.Services;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
-using NET.efilnukefesin.Tests.Lib.Common.Services.Classes;
 using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Text;
 
 namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
-    [TestCategory("IFeatureService")]
-    public class FeatureServiceTests
+    [TestCategory("IPersistanceService")]
+    public class PersistanceServiceTests
     {
         #region Properties
 
-        private IFeatureService featureService;
+        private IPersistanceService persistanceService;
 
         #endregion Properties
 
@@ -29,33 +27,25 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         {
             TestBootStrapper.Register(new ServiceCollection());
 
-            this.featureService = DiContainer.Resolve<IFeatureService>();
+            this.persistanceService = DiContainer.Resolve<IPersistanceService>();
         }
         #endregion Initialize
 
-        #region AddStaticFeature
+        #region Read
         [TestMethod]
-        public void AddStaticFeature()
+        public void Read()
         {
             throw new NotImplementedException();
         }
-        #endregion AddStaticFeature
+        #endregion Read
 
-        #region AddTimedFeature
+        #region Write
         [TestMethod]
-        public void AddTimedFeature()
+        public void Write()
         {
             throw new NotImplementedException();
         }
-        #endregion AddTimedFeature
-
-        #region AddRandomFeature
-        [TestMethod]
-        public void AddRandomFeature()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion AddRandomFeature
+        #endregion Write
 
         #endregion Methods
     }

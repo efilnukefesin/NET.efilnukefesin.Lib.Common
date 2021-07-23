@@ -6,6 +6,7 @@ using NET.efilnukefesin.Lib.Common.Messaging;
 using NET.efilnukefesin.Lib.Common.Services;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using NET.efilnukefesin.Tests.Lib.Common.Services.Classes;
+using System;
 using System.Linq;
 
 namespace NET.efilnukefesin.Tests.Lib.Common.Services
@@ -31,6 +32,22 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             this.configurationService = DiContainer.Resolve<IConfigurationService>();
         }
         #endregion Initialize
+
+        #region AddValue
+        [TestMethod]
+        public void AddValue()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion AddValue
+
+        #region ReadValue
+        [TestMethod]
+        public void ReadValue()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion ReadValue
 
         #endregion Methods
     }

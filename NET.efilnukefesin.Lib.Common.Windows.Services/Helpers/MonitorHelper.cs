@@ -41,14 +41,14 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Helpers
         }
         #endregion MonitorEnum
 
-        #region GetHandles
-        public static List<IMonitorInfoWithHandle> GetHandles()
+        #region GetInfos
+        public static List<IMonitorInfoWithHandle> GetInfos()
         {
             // Enumerate monitors
             MonitorHelper.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, MonitorHelper.MonitorEnum, IntPtr.Zero);
             return MonitorHelper.monitorInfos;
         }
-        #endregion GetHandles
+        #endregion GetInfos
 
         #endregion Methods
 

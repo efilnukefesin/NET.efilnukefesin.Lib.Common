@@ -119,9 +119,8 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
                 //TODO: add user signalling or logging
             }
 
-            
 
-            var x = MonitorHelper.GetHandles();
+            var monitorInfosEx = MonitorHelper.GetInfos();  //TODO: how to match info from this query with above data?
 
             return result;
         }

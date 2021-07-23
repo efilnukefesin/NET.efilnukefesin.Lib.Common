@@ -119,10 +119,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services
                 //TODO: add user signalling or logging
             }
 
-            var _monitorInfos = new List<MonitorInfoWithHandle>();
-
-            // Enumerate monitors
-            MonitorHelper.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, MonitorHelper.MonitorEnum, IntPtr.Zero);
+            
 
             var x = MonitorHelper.GetHandles();
 

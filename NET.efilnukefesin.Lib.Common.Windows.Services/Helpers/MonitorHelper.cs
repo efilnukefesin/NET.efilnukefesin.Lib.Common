@@ -11,7 +11,8 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Helpers
     public static class MonitorHelper
     {
         #region Properties
-        private static List<IMonitorInfoWithHandle> _monitorInfos = new List<IMonitorInfoWithHandle>();
+
+        private static List<IMonitorInfoWithHandle> monitorInfos = new List<IMonitorInfoWithHandle>();
 
         #endregion Properties
 
@@ -22,26 +23,32 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Helpers
         public static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip, MonitorEnumDelegate lpfnEnum, IntPtr dwData);
 
         [DllImport("user32.dll")]
-        public static extern bool GetMonitorInfo(IntPtr hmon, ref MONITORINFO mi);
+        public static extern bool GetMonitorInfo(IntPtr hmon, ref MONITORINFOEX mi);
         #endregion Imported Methods
 
         #region Methods
 
+        #region MonitorEnum
         public static bool MonitorEnum(IntPtr hMonitor, IntPtr hdcMonitor, ref RECT lprcMonitor, IntPtr dwData)
         {
-            var mi = new MONITORINFO();
+            MONITORINFOEX mi = new MONITORINFOEX();
             mi.size = (uint)Marshal.SizeOf(mi);
             MonitorHelper.GetMonitorInfo(hMonitor, ref mi);
 
             // Add to monitor info
-            _monitorInfos.Add(new MonitorInfoWithHandle(hMonitor, mi));
+            monitorInfos.Add(new MonitorInfoWithHandle(hMonitor, mi));
             return true;
         }
+        #endregion MonitorEnum
 
+        #region GetHandles
         public static List<IMonitorInfoWithHandle> GetHandles()
         {
-            return MonitorHelper._monitorInfos;
+            // Enumerate monitors
+            MonitorHelper.EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero, MonitorHelper.MonitorEnum, IntPtr.Zero);
+            return MonitorHelper.monitorInfos;
         }
+        #endregion GetHandles
 
         #endregion Methods
 

@@ -24,7 +24,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Classes
         /// <value>
         /// The monitor information.
         /// </value>
-        public MONITORINFO MonitorInfo { get; private set; }
+        public MONITORINFOEX MonitorInfo { get; private set; }
 
         #endregion Properties
 
@@ -34,7 +34,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Classes
         /// </summary>
         /// <param name="monitorHandle">The monitor handle.</param>
         /// <param name="monitorInfo">The monitor information.</param>
-        public MonitorInfoWithHandle(IntPtr monitorHandle, MONITORINFO monitorInfo)
+        public MonitorInfoWithHandle(IntPtr monitorHandle, MONITORINFOEX monitorInfo)
         {
             MonitorHandle = monitorHandle;
             MonitorInfo = monitorInfo;

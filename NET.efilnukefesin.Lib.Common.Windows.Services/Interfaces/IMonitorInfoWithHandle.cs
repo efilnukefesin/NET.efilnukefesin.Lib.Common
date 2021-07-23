@@ -11,7 +11,7 @@ namespace NET.efilnukefesin.Lib.Common.Windows.Services.Interfaces
         #region Properties
 
         IntPtr MonitorHandle { get; }
-        MONITORINFO MonitorInfo { get; }
+        MONITORINFOEX MonitorInfo { get; }
 
         #endregion Properties
     }

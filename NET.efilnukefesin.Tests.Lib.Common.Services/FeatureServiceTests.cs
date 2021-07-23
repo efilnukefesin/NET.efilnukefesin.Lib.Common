@@ -37,7 +37,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void AddStaticFeature()
         {
-            throw new NotImplementedException();
+            this.featureService.AddStatic("AddStaticFeature");
+
+            Assert.AreEqual(true, this.featureService.Exists("AddStaticFeature"));
         }
         #endregion AddStaticFeature
 
@@ -56,6 +58,32 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             throw new NotImplementedException();
         }
         #endregion AddRandomFeature
+
+        #region CheckStaticFeature
+        [TestMethod]
+        public void CheckStaticFeature()
+        {
+            this.featureService.AddStatic("CheckStaticFeature");
+
+            Assert.AreEqual(true, this.featureService.Check("CheckStaticFeature"));
+        }
+        #endregion CheckStaticFeature
+
+        #region CheckTimedFeature
+        [TestMethod]
+        public void CheckTimedFeature()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion CheckTimedFeature
+
+        #region CheckRandomFeature
+        [TestMethod]
+        public void CheckRandomFeature()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion CheckRandomFeature        
 
         #endregion Methods
     }

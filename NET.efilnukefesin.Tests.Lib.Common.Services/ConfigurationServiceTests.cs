@@ -37,15 +37,33 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void AddValue()
         {
-            throw new NotImplementedException();
+            bool hasAdded = this.configurationService.Add<int>("AddValue", 7);
+
+            Assert.AreEqual(true, this.configurationService.Exists<int>("AddValue"));
+            Assert.AreEqual(true, hasAdded);
         }
         #endregion AddValue
+
+        #region AddValueNegative
+        [TestMethod]
+        public void AddValueNegative()
+        {
+            bool hasAdded = this.configurationService.Add<int>("AddValueNegative", 7);
+            bool hasAdded2 = this.configurationService.Add<int>("AddValueNegative", 8);
+
+            Assert.AreEqual(true, this.configurationService.Exists<int>("AddValueNegative"));
+            Assert.AreEqual(true, hasAdded);
+            Assert.AreEqual(false, hasAdded2);
+        }
+        #endregion AddValueNegative
 
         #region ReadValue
         [TestMethod]
         public void ReadValue()
         {
-            throw new NotImplementedException();
+            this.configurationService.Add<int>("ReadValue", 7);
+
+            Assert.AreEqual(7, this.configurationService.Get<int>("ReadValue"));
         }
         #endregion ReadValue
 

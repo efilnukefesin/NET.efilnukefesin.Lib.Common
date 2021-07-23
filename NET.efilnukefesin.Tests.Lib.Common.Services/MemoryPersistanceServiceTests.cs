@@ -11,7 +11,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("IPersistanceService")]
-    public class PersistanceServiceTests
+    public class MemoryPersistanceServiceTests
     {
         #region Properties
 

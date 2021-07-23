@@ -14,6 +14,10 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 
         #region Methods
 
+        bool Add<T>(string Name, T Value);
+        T Get<T>(string Name);
+        bool Exists<T>(string Name);
+
         #endregion Methods
     }
 }

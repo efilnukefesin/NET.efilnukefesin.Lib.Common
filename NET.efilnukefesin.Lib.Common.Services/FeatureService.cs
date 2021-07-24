@@ -15,13 +15,15 @@ namespace NET.efilnukefesin.Lib.Common.Services
         private List<string> StaticFeatures = new List<string>();
 
         private ITimeService timeService;
+        private ILogService logService;
 
         #endregion Properties
 
         #region Construction
 
-        public FeatureService(ITimeService TimeService)
+        public FeatureService(ILogService LogService, ITimeService TimeService)
         {
+            this.logService = LogService;
             this.timeService = TimeService;
         }
 
@@ -47,6 +49,11 @@ namespace NET.efilnukefesin.Lib.Common.Services
             if (!this.StaticFeatures.Contains(Name))
             {
                 this.StaticFeatures.Add(Name);
+                this.logService.Info("FeatureService", "AddStatic", $"Added Static Feature Toggle '{Name}'.");
+            }
+            else
+            {
+                this.logService.Info("FeatureService", "AddStatic", $"Could not add Static Feature Toggle '{Name}' as it already exists, no need to worry though.");
             }
         }
         #endregion AddStatic
@@ -54,14 +61,20 @@ namespace NET.efilnukefesin.Lib.Common.Services
         #region Check
         public bool Check(string Name)
         {
-            return this.Exists(Name);
+            bool result = false;
+            result = this.Exists(Name);
+            this.logService.Info("FeatureService", "Check", $"Checked for Feature Toggle '{Name}' with result '{result}'.");
+            return result;
         }
         #endregion Check
 
         #region Exists
         public bool Exists(string Name)
         {
-            return this.StaticFeatures.Contains(Name);
+            bool result = false;
+            result = this.StaticFeatures.Contains(Name);
+            this.logService.Info("FeatureService", "Exists", $"Checked for existance of Feature Toggle '{Name}' with result '{result}'.");
+            return result;
         }
         #endregion Exists
 

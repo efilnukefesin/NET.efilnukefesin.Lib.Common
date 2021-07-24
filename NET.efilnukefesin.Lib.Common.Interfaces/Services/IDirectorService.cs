@@ -5,8 +5,8 @@ using System.Text;
 
 namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 {
-    [ArchitectureLayer("Application Control")]
-    public interface IAppService : IService
+    [ArchitectureLayer("Business Logic")]
+    public class IDirectorService : IService
     {
         #region Properties
 
@@ -14,6 +14,6 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 
         #region Methods
 
-        #endregion Methods
+        #endregion Methods  
     }
 }

@@ -4,6 +4,7 @@ using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
 using NET.efilnukefesin.Lib.Common.Messaging;
 using NET.efilnukefesin.Lib.Common.Services;
+using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using NET.efilnukefesin.Tests.Lib.Common.Services.Classes;
 using System;
@@ -13,33 +14,21 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("IFeatureService")]
-    public class FeatureServiceTests
+    public class FeatureServiceTests : BaseServiceTest<IFeatureService>
     {
         #region Properties
-
-        private IFeatureService featureService;
 
         #endregion Properties
 
         #region Methods
 
-        #region Initialize
-        [TestInitialize]
-        public void Initialize()
-        {
-            TestBootStrapper.Register(new ServiceCollection());
-
-            this.featureService = DiContainer.Resolve<IFeatureService>();
-        }
-        #endregion Initialize
-
         #region AddStaticFeature
         [TestMethod]
         public void AddStaticFeature()
         {
-            this.featureService.AddStatic("AddStaticFeature");
+            this.service.AddStatic("AddStaticFeature");
 
-            Assert.AreEqual(true, this.featureService.Exists("AddStaticFeature"));
+            Assert.AreEqual(true, this.service.Exists("AddStaticFeature"));
         }
         #endregion AddStaticFeature
 
@@ -63,9 +52,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void CheckStaticFeature()
         {
-            this.featureService.AddStatic("CheckStaticFeature");
+            this.service.AddStatic("CheckStaticFeature");
 
-            Assert.AreEqual(true, this.featureService.Check("CheckStaticFeature"));
+            Assert.AreEqual(true, this.service.Check("CheckStaticFeature"));
         }
         #endregion CheckStaticFeature
 

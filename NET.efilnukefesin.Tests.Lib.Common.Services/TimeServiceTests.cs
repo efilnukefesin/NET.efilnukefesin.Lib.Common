@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
+using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using System;
 using System.Collections.Generic;
@@ -12,25 +13,13 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("ITimeService")]
-    public class TimeServiceTests
+    public class TimeServiceTests : BaseServiceTest<ITimeService>
     {
         #region Properties
-
-        private ITimeService timeService;
 
         #endregion Properties
 
         #region Methods
-
-        #region Initialize
-        [TestInitialize]
-        public void Initialize()
-        {
-            TestBootStrapper.Register(new ServiceCollection());
-
-            this.timeService = DiContainer.Resolve<ITimeService>();
-        }
-        #endregion Initialize
 
         #region SetCurrentTime
         [TestMethod]
@@ -38,9 +27,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         {
             DateTime startTime = DateTime.Parse("2021-05-01T07:34:42-5:00", DateTimeFormatInfo.InvariantInfo);
 
-            this.timeService.SetCurrentTime("NewPlace", startTime);
+            this.service.SetCurrentTime("NewPlace", startTime);
 
-            Assert.AreEqual(startTime, this.timeService.GetCurrentTime("NewPlace"));
+            Assert.AreEqual(startTime, this.service.GetCurrentTime("NewPlace"));
         }
         #endregion SetCurrentTime
 

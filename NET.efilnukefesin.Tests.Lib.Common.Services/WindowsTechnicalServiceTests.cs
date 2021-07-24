@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Objects;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
+using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("ITechnicalService")]
-    public class WindowsTechnicalServiceTests
+    public class WindowsTechnicalServiceTests : BaseServiceTest<ITechnicalService>
     {
         #region Properties
-
-        private ITechnicalService technicalService;
 
         #endregion Properties
 
@@ -24,11 +23,12 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 
         #region Initialize
         [TestInitialize]
-        public void Initialize()
+        public override void Initialize()
         {
+            //different registration
             TestBootStrapper.RegisterForWindows(new ServiceCollection());
 
-            this.technicalService = DiContainer.Resolve<ITechnicalService>();
+            this.service = DiContainer.Resolve<ITechnicalService>();
         }
         #endregion Initialize
 
@@ -36,7 +36,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void GetComputerName()
         {
-            string computername = this.technicalService.ComputerName;
+            string computername = this.service.ComputerName;
 
             Assert.IsNotNull(computername);
             Assert.AreNotEqual(0, computername.Length);
@@ -47,7 +47,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void GetOsName()
         {
-            string osName = this.technicalService.OperatingSystemName;
+            string osName = this.service.OperatingSystemName;
 
             Assert.IsNotNull(osName);
             Assert.AreNotEqual(0, osName.Length);
@@ -58,7 +58,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void ListMonitors()
         {
-            IList<IMonitor> monitors = this.technicalService.Monitors;
+            IList<IMonitor> monitors = this.service.Monitors;
 
             Assert.AreNotEqual(0, monitors.Count);
         }

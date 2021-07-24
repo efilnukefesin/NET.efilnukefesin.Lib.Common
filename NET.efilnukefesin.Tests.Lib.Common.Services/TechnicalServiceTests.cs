@@ -6,6 +6,7 @@ using NET.efilnukefesin.Lib.Common.Interfaces.Objects;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
 using NET.efilnukefesin.Lib.Common.Messaging;
 using NET.efilnukefesin.Lib.Common.Services;
+using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using NET.efilnukefesin.Tests.Lib.Common.Services.Classes;
 using System.Collections;
@@ -16,31 +17,19 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("ITechnicalService")]
-    public class TechnicalServiceTests
+    public class TechnicalServiceTests : BaseServiceTest<ITechnicalService>
     {
         #region Properties
-
-        private ITechnicalService technicalService;
 
         #endregion Properties
 
         #region Methods
 
-        #region Initialize
-        [TestInitialize]
-        public void Initialize()
-        {
-            TestBootStrapper.Register(new ServiceCollection());
-
-            this.technicalService = DiContainer.Resolve<ITechnicalService>();
-        }
-        #endregion Initialize
-
         #region GetComputerName
         [TestMethod]
         public void GetComputerName()
         {
-            string computername = this.technicalService.ComputerName;
+            string computername = this.service.ComputerName;
 
             Assert.IsNotNull(computername);
             Assert.AreNotEqual(0, computername.Length);
@@ -51,7 +40,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void GetOsName()
         {
-            string osName = this.technicalService.OperatingSystemName;
+            string osName = this.service.OperatingSystemName;
 
             Assert.IsNotNull(osName);
             Assert.AreNotEqual(0, osName.Length);
@@ -62,7 +51,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void ListMonitors()
         {
-            IList<IMonitor> monitors = this.technicalService.Monitors;
+            IList<IMonitor> monitors = this.service.Monitors;
 
             Assert.AreEqual(1, monitors.Count);
         }

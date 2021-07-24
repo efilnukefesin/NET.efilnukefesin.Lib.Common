@@ -30,6 +30,8 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IFeatureService, FeatureService>();
             services.AddTransient<IUserNotificationService, UserNotificationService>();
             services.AddSingleton<IPersistanceService, MemoryPersistanceService>();
+            services.AddSingleton<ITaskService, TaskService>();
+            services.AddSingleton<IObjectService, ObjectService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }
@@ -48,6 +50,8 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IFeatureService, FeatureService>();
             services.AddTransient<IUserNotificationService, UserNotificationService>();
             services.AddSingleton<IPersistanceService, MemoryPersistanceService>();
+            services.AddSingleton<ITaskService, TaskService>();
+            services.AddSingleton<IObjectService, ObjectService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }

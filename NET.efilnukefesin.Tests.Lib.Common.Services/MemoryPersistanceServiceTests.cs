@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
+using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper;
 using System;
 using System.Collections.Generic;
@@ -11,25 +12,13 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 {
     [TestClass]
     [TestCategory("IPersistanceService")]
-    public class MemoryPersistanceServiceTests
+    public class MemoryPersistanceServiceTests : BaseServiceTest<IPersistanceService>
     {
         #region Properties
-
-        private IPersistanceService persistanceService;
 
         #endregion Properties
 
         #region Methods
-
-        #region Initialize
-        [TestInitialize]
-        public void Initialize()
-        {
-            TestBootStrapper.Register(new ServiceCollection());
-
-            this.persistanceService = DiContainer.Resolve<IPersistanceService>();
-        }
-        #endregion Initialize
 
         #region Read
         [TestMethod]

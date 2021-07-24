@@ -20,11 +20,40 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 
         #region Methods
 
+        #region AddEndpoint
+        [TestMethod]
+        public void AddEndpoint()
+        {
+            bool wasSuccessful = this.service.AddEndpoint("Read", "Read/int");
+
+            Assert.AreEqual(true, wasSuccessful);
+            Assert.AreEqual(true, this.service.Exists("Read"));
+        }
+        #endregion AddEndpoint
+
+        #region AddEndpointNegative
+        [TestMethod]
+        public void AddEndpointNegative()
+        {
+            bool wasSuccessful = this.service.AddEndpoint("Read", "Read/int");
+            bool wasSuccessful2 = this.service.AddEndpoint("Read", "Read/int");
+
+            Assert.AreEqual(true, wasSuccessful);
+            Assert.AreEqual(true, this.service.Exists("Read"));
+            Assert.AreEqual(false, wasSuccessful2);
+        }
+        #endregion AddEndpointNegative
+
         #region Read
         [TestMethod]
         public void Read()
         {
-            throw new NotImplementedException();
+            int value = 1;
+            this.service.AddEndpoint("Read", "Read/int");
+            this.service.Write<int>("Read", value);
+            int resultValue = this.service.Read<int>("Read");
+
+            Assert.AreEqual(value, resultValue);
         }
         #endregion Read
 
@@ -32,7 +61,10 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void Write()
         {
-            throw new NotImplementedException();
+            this.service.AddEndpoint("Write", "Write/int");
+            this.service.Write<int>("Write", 1);
+
+            Assert.AreEqual(true, this.service.ValueExists("Write"));
         }
         #endregion Write
 

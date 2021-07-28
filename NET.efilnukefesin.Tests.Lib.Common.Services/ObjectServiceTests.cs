@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NET.efilnukefesin.Lib.Common;
 using NET.efilnukefesin.Lib.Common.Interfaces.Services;
 using NET.efilnukefesin.Tests.Lib.Common.Services.Base;
 using NET.efilnukefesin.Tests.Lib.Common.Services.Classes;
@@ -19,6 +20,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
 
         #region Methods
 
+        #region Create
         [TestMethod]
         public void Create()
         {
@@ -28,6 +30,24 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             Assert.IsInstanceOfType(testObject, typeof(TestObject));
             Assert.AreEqual("SomeString", testObject.Text);
         }
+        #endregion Create
+
+        #region CreateNegative
+        [TestMethod]
+        public void CreateNegative()
+        {
+            ILogService logService = DiContainer.Resolve<ILogService>();
+
+            int numberOfErrorsBefore = logService.ErrorCount;
+
+            TestObject testObject = this.service.Create<TestObject>(666);  // using the wrong parameter for the c'tor
+
+            int numberOfErrorsAfter = logService.ErrorCount;
+
+            Assert.IsNull(testObject);
+            Assert.AreEqual(numberOfErrorsBefore + 1, numberOfErrorsAfter);
+        }
+        #endregion CreateNegative
 
         #endregion Methods
     }

@@ -36,7 +36,15 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void AddTimedFeature()
         {
-            throw new NotImplementedException();
+            ITimeService timeService = DiContainer.Resolve<ITimeService>();
+            string placeTimeName = "AddTimedFeature";
+            timeService.SetCurrentTime(placeTimeName, DateTime.Now);
+
+            this.service.AddTimed("AddTimedFeature", 5000);
+            this.service.AddTimed("AddTimedFeature2", timeService.GetCurrentTime(placeTimeName) + TimeSpan.FromHours(1));
+
+            Assert.AreEqual(true, this.service.Exists("AddTimedFeature"));
+            Assert.AreEqual(true, this.service.Exists("AddTimedFeature2"));
         }
         #endregion AddTimedFeature
 
@@ -44,7 +52,9 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void AddRandomFeature()
         {
-            throw new NotImplementedException();
+            this.service.AddRandom("AddRandomFeature", 3, 10);
+
+            Assert.AreEqual(true, this.service.Exists("AddRandomFeature"));
         }
         #endregion AddRandomFeature
 
@@ -66,13 +76,40 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         }
         #endregion CheckTimedFeature
 
-        #region CheckRandomFeature
-        [TestMethod]
-        public void CheckRandomFeature()
+        #region CheckRandomFeatureDynamic
+        [DataTestMethod]
+        [DataRow(1, 1, true)]
+        [DataRow(10, 10, true)]
+        [DataRow(3, 10, null)]
+        public void CheckRandomFeatureDynamic(int Numerator, int Denominator, bool? Assertion)
         {
-            throw new NotImplementedException();
+            this.service.AddRandom("CheckRandomFeatureDynamic", Numerator, Denominator, false);
+
+            Assert.IsInstanceOfType(this.service.Check("CheckRandomFeatureDynamic"), typeof(bool));
+            if (Assertion != null)
+            {
+                Assert.AreEqual((bool)Assertion, this.service.Check("CheckRandomFeatureDynamic"));
+            }
         }
-        #endregion CheckRandomFeature        
+        #endregion CheckRandomFeatureDynamic
+
+        #region CheckRandomFeatureStatic
+        [DataTestMethod]
+        [DataRow(1, 1)]
+        [DataRow(10, 10)]
+        [DataRow(3, 10)]
+        [DataRow(3, 10000)]
+        public void CheckRandomFeatureStatic(int Numerator, int Denominator)
+        {
+            this.service.AddRandom("CheckRandomFeatureStatic", Numerator, Denominator, false);
+
+            bool firstValue = this.service.Check("CheckRandomFeatureDynamic");
+            bool secondValue = this.service.Check("CheckRandomFeatureDynamic");
+
+            Assert.IsInstanceOfType(this.service.Check("CheckRandomFeatureStatic"), typeof(bool));
+            Assert.AreEqual(firstValue, secondValue);
+        }
+        #endregion CheckRandomFeatureStatic
 
         #endregion Methods
     }

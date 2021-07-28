@@ -17,6 +17,9 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
         void AddStatic(string Name);
         bool Exists(string Name);
         bool Check(string Name);
+        void AddTimed(string Name, int MilliSecondsFromNow);
+        void AddTimed(string Name, DateTime TargetDate);
+        void AddRandom(string Name, int Numerator, int Denominator, bool IsStaticRandom = true);
 
         #endregion Methods
     }

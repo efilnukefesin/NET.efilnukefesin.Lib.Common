@@ -16,6 +16,7 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
 
         DateTime GetCurrentTime(string PlaceName);
         void SetCurrentTime(string PlaceName, DateTime NewTime);
+        bool FastForward(string PlaceName, TimeSpan DeltaTime);
 
         #endregion Methods
     }

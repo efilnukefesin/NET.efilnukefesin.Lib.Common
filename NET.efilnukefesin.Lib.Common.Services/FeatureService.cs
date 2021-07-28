@@ -55,16 +55,16 @@ namespace NET.efilnukefesin.Lib.Common.Services
         #endregion AddStatic
 
         #region AddTimed
-        public void AddTimed(string Name, int MilliSecondsFromNow)
+        public void AddTimed(string Name, int MilliSecondsFromNow, string Placename)
         {
-            this.AddFeature<TimedFeature>(Name, MilliSecondsFromNow);
+            this.AddFeature<TimedFeature>(Name, MilliSecondsFromNow, Placename);
         }
         #endregion AddTimed
 
         #region AddTimed
-        public void AddTimed(string Name, DateTime TargetDate)
+        public void AddTimed(string Name, DateTime TargetDate, string Placename)
         {
-            this.AddFeature<TimedFeature>(Name, TargetDate);
+            this.AddFeature<TimedFeature>(Name, TargetDate, Placename);
         }
         #endregion AddTimed
 

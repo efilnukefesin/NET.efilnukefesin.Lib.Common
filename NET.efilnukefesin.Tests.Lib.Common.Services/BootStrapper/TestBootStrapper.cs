@@ -24,7 +24,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<ILogService, DebugLogService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddSingleton<IErrorService, DebugErrorService>();
-            services.AddTransient<ITimeService, TimeService>();
+            services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
             services.AddSingleton<ITechnicalService, TechnicalService>();
             services.AddSingleton<IFeatureService, FeatureService>();
@@ -44,7 +44,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<ILogService, DebugLogService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddSingleton<IErrorService, DebugErrorService>();
-            services.AddTransient<ITimeService, TimeService>();
+            services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IConfigurationService, ConfigurationService>();
             services.AddSingleton<ITechnicalService, WindowsTechnicalService>();
             services.AddSingleton<IFeatureService, FeatureService>();

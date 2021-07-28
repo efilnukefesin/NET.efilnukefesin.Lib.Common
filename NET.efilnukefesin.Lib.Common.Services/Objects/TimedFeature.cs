@@ -14,22 +14,26 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
 
         private ITimeService timeService;
 
+        private string Placename;
+
         #endregion Properties
 
         #region Construction
 
-        public TimedFeature(string Name, DateTime SwitchPoint, ITimeService TimeService)
+        public TimedFeature(string Name, DateTime SwitchPoint, ITimeService TimeService, string Placename)
             : base(Name)
         {
             this.timeService = TimeService;
             this.SwitchPoint = SwitchPoint;
+            this.Placename = Placename;
         }
 
-        public TimedFeature(string Name, int MilliSecondsFromNow, ITimeService TimeService)
+        public TimedFeature(string Name, int MilliSecondsFromNow, ITimeService TimeService, string Placename)
             : base(Name)
         {
             this.timeService = TimeService;
-            //this.SwitchPoint = SwitchPoint;
+            this.SwitchPoint = this.timeService.GetCurrentTime(Placename) + TimeSpan.FromMilliseconds(MilliSecondsFromNow);
+            this.Placename = Placename;
         }
 
         #endregion Construction
@@ -39,7 +43,14 @@ namespace NET.efilnukefesin.Lib.Common.Services.Objects
         #region Check
         public override bool Check()
         {
-            throw new NotImplementedException();
+            bool result = false;
+
+            if (this.timeService.GetCurrentTime(this.Placename) >= this.SwitchPoint)
+            {
+                result = true;
+            }
+
+            return result;
         }
         #endregion Check
 

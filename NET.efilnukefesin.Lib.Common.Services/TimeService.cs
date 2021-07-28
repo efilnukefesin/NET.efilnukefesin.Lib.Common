@@ -64,6 +64,25 @@ namespace NET.efilnukefesin.Lib.Common.Services
         }
         #endregion SetCurrentTime
 
+        #region FastForward
+        public bool FastForward(string PlaceName, TimeSpan DeltaTime)
+        {
+            bool result = false;
+            if (this.times.ContainsKey(PlaceName))
+            {
+                this.times[PlaceName] += DeltaTime;
+                result = true;
+                this.logService.Debug("TimeService", "FastForward", $"Adjusted time for '{PlaceName}' by '{DeltaTime}'.");
+            }
+            else
+            {
+                this.logService.Error("TimeService", "FastForward", $"Could not adjust time for '{PlaceName}' by '{DeltaTime}' as it has not been found.");
+            }
+
+            return result;
+        }
+        #endregion FastForward
+
         #endregion Methods
 
         #region Events

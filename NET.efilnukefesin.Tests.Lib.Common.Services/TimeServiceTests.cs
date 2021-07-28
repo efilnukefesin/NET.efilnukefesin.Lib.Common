@@ -27,11 +27,24 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         {
             DateTime startTime = DateTime.Parse("2021-05-01T07:34:42-5:00", DateTimeFormatInfo.InvariantInfo);
 
-            this.service.SetCurrentTime("NewPlace", startTime);
+            this.service.SetCurrentTime("SetCurrentTime", startTime);
 
-            Assert.AreEqual(startTime, this.service.GetCurrentTime("NewPlace"));
+            Assert.AreEqual(startTime, this.service.GetCurrentTime("SetCurrentTime"));
         }
         #endregion SetCurrentTime
+
+        #region FastForward
+        [TestMethod]
+        public void FastForward()
+        {
+            DateTime startTime = DateTime.Parse("2021-05-01T07:34:42-5:00", DateTimeFormatInfo.InvariantInfo);
+
+            this.service.SetCurrentTime("FastForward", startTime);
+            this.service.FastForward("FastForward", TimeSpan.FromMinutes(1));
+
+            Assert.AreEqual(startTime + TimeSpan.FromMinutes(1), this.service.GetCurrentTime("FastForward"));
+        }
+        #endregion FastForward
 
         #endregion Methods
     }

@@ -40,8 +40,8 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
             string placeTimeName = "AddTimedFeature";
             timeService.SetCurrentTime(placeTimeName, DateTime.Now);
 
-            this.service.AddTimed("AddTimedFeature", 5000);
-            this.service.AddTimed("AddTimedFeature2", timeService.GetCurrentTime(placeTimeName) + TimeSpan.FromHours(1));
+            this.service.AddTimed("AddTimedFeature", 5000, placeTimeName);
+            this.service.AddTimed("AddTimedFeature2", timeService.GetCurrentTime(placeTimeName) + TimeSpan.FromHours(1), placeTimeName);
 
             Assert.AreEqual(true, this.service.Exists("AddTimedFeature"));
             Assert.AreEqual(true, this.service.Exists("AddTimedFeature2"));
@@ -72,7 +72,17 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         [TestMethod]
         public void CheckTimedFeature()
         {
-            throw new NotImplementedException();
+            ITimeService timeService = DiContainer.Resolve<ITimeService>();
+            string placeTimeName = "CheckTimedFeature";
+            timeService.SetCurrentTime(placeTimeName, DateTime.Now);
+
+            this.service.AddTimed("CheckTimedFeature", 5000, placeTimeName);
+            this.service.AddTimed("CheckTimedFeature2", timeService.GetCurrentTime(placeTimeName) + TimeSpan.FromHours(1), placeTimeName);
+
+            timeService.FastForward(placeTimeName, TimeSpan.FromMinutes(1));
+
+            Assert.AreEqual(true, this.service.Check("CheckTimedFeature"));
+            Assert.AreEqual(false, this.service.Check("CheckTimedFeature2"));
         }
         #endregion CheckTimedFeature
 

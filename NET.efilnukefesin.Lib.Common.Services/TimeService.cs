@@ -1,6 +1,7 @@
 ﻿using NET.efilnukefesin.Lib.Common.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NET.efilnukefesin.Lib.Common.Services
@@ -82,6 +83,26 @@ namespace NET.efilnukefesin.Lib.Common.Services
             return result;
         }
         #endregion FastForward
+
+        #region Tick
+        public void Tick(string PlaceName, float DeltaTimeInSeconds)
+        {
+            if (this.times.ContainsKey(PlaceName))
+            { 
+                this.times[PlaceName] += TimeSpan.FromSeconds(DeltaTimeInSeconds);
+            }
+        }
+        #endregion Tick
+
+        #region Tick
+        public void Tick(float DeltaTimeInSeconds)
+        {
+            foreach (string key in this.times.Keys.ToList())  // iterate through a list copy independent from the dictionary
+            {
+                this.times[key] += TimeSpan.FromSeconds(DeltaTimeInSeconds);
+            }
+        }
+        #endregion Tick
 
         #endregion Methods
 

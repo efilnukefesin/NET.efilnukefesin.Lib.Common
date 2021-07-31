@@ -46,6 +46,33 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         }
         #endregion FastForward
 
+        #region Tick
+        [TestMethod]
+        public void Tick()
+        {
+            DateTime startTime = DateTime.Parse("2021-05-01T07:34:42-5:00", DateTimeFormatInfo.InvariantInfo);
+
+            this.service.SetCurrentTime("Tick", startTime);
+            this.service.Tick("Tick", 1f);
+
+            Assert.AreEqual(startTime + TimeSpan.FromSeconds(1), this.service.GetCurrentTime("Tick"));
+        }
+        #endregion Tick
+
+        #region TickAll
+        [TestMethod]
+        public void TickAll()
+        {
+            DateTime startTime = DateTime.Parse("2021-05-01T07:34:42-5:00", DateTimeFormatInfo.InvariantInfo);
+
+            this.service.SetCurrentTime("TickAll", startTime);
+            this.service.Tick(1f);  // no refererence to any time place
+
+
+            Assert.AreEqual(startTime + TimeSpan.FromSeconds(1), this.service.GetCurrentTime("TickAll"));
+        }
+        #endregion TickAll
+
         #endregion Methods
     }
 }

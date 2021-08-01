@@ -1,4 +1,6 @@
-﻿using NET.efilnukefesin.Lib.Common.Interfaces.Services;
+﻿using NET.efilnukefesin.Lib.Common.Interfaces.Objects;
+using NET.efilnukefesin.Lib.Common.Interfaces.Services;
+using NET.efilnukefesin.Lib.Common.Services.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
 
         private IPersistanceService persistanceService;
 
-        private List<Tuple<string, Type, object>> items = new List<Tuple<string, Type, object>>();  //TODO: replace by IConfigEntry and Implementation
+        private List<IConfigurationItem> items = new List<IConfigurationItem>();
 
         #endregion Properties
 
@@ -34,7 +36,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
 
             if (!this.Exists<T>(Name))
             {
-                this.items.Add(new Tuple<string, Type, object>(Name, typeof(T), Value));
+                this.items.Add(DiContainer.Resolve<ConfigurationItem<T>>(Name, Value));
                 result = true;
             }
 
@@ -46,7 +48,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
         public bool Exists<T>(string Name)
         {
             bool result = false;
-            result = this.items.Any(x => x.Item1.Equals(Name));
+            result = this.items.Any(x => x.Name.Equals(Name));
             return result;
         }
         #endregion Exists
@@ -58,7 +60,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
 
             if (this.Exists<T>(Name))
             {
-                result = (T)this.items.Where(x => x.Item1.Equals(Name)).FirstOrDefault().Item3;
+                result = (T)this.items.Where(x => x.Name.Equals(Name)).FirstOrDefault().Value;
             }
 
             return result;

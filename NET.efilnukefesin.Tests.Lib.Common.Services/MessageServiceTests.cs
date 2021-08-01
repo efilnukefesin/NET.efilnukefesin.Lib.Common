@@ -15,10 +15,6 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
     [TestCategory("IMessageService")]
     public class MessageServiceTests : BaseServiceTest<IMessageService>
     {
-        #region Properties
-
-        #endregion Properties
-
         #region Methods
 
         #region Register

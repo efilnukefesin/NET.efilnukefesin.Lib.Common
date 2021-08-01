@@ -12,7 +12,7 @@ namespace NET.efilnukefesin.Lib.Common.Services
 
         private IPersistanceService persistanceService;
 
-        private List<Tuple<string, Type, object>> items = new List<Tuple<string, Type, object>>();
+        private List<Tuple<string, Type, object>> items = new List<Tuple<string, Type, object>>();  //TODO: replace by IConfigEntry and Implementation
 
         #endregion Properties
 

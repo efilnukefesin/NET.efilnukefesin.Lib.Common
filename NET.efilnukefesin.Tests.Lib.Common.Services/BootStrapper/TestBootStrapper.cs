@@ -32,6 +32,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IPersistanceService, MemoryPersistanceService>();
             services.AddSingleton<ITaskService, TaskService>();
             services.AddSingleton<IObjectService, ObjectService>();
+            services.AddSingleton<ITranslationService, TranslationService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }
@@ -52,6 +53,7 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services.BootStrapper
             services.AddSingleton<IPersistanceService, MemoryPersistanceService>();
             services.AddSingleton<ITaskService, TaskService>();
             services.AddSingleton<IObjectService, ObjectService>();
+            services.AddSingleton<ITranslationService, TranslationService>();
 
             DiContainer.SetServiceProvider(services.BuildServiceProvider());  //TODO: move to a different class
         }

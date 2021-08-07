@@ -129,6 +129,11 @@ namespace NET.efilnukefesin.Lib.Common.Services
             {
                 result = this.items.Where(x => x.Locale.Equals(Locale) && x.Name.Equals(Key)).FirstOrDefault().Text;
             }
+            else if (this.Exists("", Key))
+            {
+                // return invariant info
+                result = this.items.Where(x => x.Locale.Equals("") && x.Name.Equals(Key)).FirstOrDefault().Text;
+            }
 
             return result;
         }

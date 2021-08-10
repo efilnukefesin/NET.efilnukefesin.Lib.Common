@@ -16,6 +16,7 @@ namespace NET.efilnukefesin.Lib.Common.Interfaces.Services
         #region Methods
 
         T Create<T>(params object[] Parameters) where T : class, IBaseObject;
+        int Count();
 
         #endregion Methods  
     }

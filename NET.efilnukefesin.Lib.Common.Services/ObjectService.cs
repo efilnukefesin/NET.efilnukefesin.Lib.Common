@@ -60,6 +60,20 @@ namespace NET.efilnukefesin.Lib.Common.Services
         }
         #endregion Create
 
+        #region Count
+        public int Count()
+        {
+            int result = -1;
+
+            if (this.IsInitialized)
+            {
+                result = this.items.Count;
+            }
+
+            return result;
+        }
+        #endregion Count
+
         #endregion Methods
 
         #region Events

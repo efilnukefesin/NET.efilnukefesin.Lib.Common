@@ -49,6 +49,19 @@ namespace NET.efilnukefesin.Tests.Lib.Common.Services
         }
         #endregion CreateNegative
 
+        #region Count
+        [TestMethod]
+        public void Count()
+        {
+            int initialCount = this.service.Count();
+            TestObject testObject = this.service.Create<TestObject>("SomeString");
+            TestObject testObject2 = this.service.Create<TestObject>("SomeOtherString");
+            int lastCount = this.service.Count();
+
+            Assert.AreEqual(2, lastCount - initialCount);
+        }
+        #endregion Count
+
         #endregion Methods
     }
 }

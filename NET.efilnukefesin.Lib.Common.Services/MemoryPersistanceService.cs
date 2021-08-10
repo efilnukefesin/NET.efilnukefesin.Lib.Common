@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NET.efilnukefesin.Lib.Common.Windows.Services
+namespace NET.efilnukefesin.Lib.Common.Services
 {
     public class MemoryPersistanceService : IPersistanceService
     {

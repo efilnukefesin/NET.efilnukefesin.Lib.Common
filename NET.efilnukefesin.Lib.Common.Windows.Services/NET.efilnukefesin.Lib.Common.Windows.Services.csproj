@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.3-alpha03</Version>
+    <Version>0.0.3-alpha04</Version>
     <Authors>efilnukefesin.NET</Authors>
     <Description>Specific Windows Platform implementations</Description>
   </PropertyGroup>
